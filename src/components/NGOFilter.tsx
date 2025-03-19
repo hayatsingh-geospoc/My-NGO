@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +14,18 @@ interface NGOFilterProps {
   totalNGOs: number;
 }
 
-export default function NGOFilter({ totalNGOs }: NGOFilterProps) {
+// Loading component for suspense fallback
+function NGOFilterLoading() {
+  return (
+    <div className='bg-white rounded-lg shadow-sm border p-4 mb-6'>
+      <div className='flex justify-between items-center'>
+        <h2 className='text-xl font-semibold'>Loading Filters...</h2>
+      </div>
+    </div>
+  );
+}
+
+function NGOFilterContent({ totalNGOs }: NGOFilterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -87,7 +98,7 @@ export default function NGOFilter({ totalNGOs }: NGOFilterProps) {
     setLocalSelectedCauses(selectedCauses);
     setLocalYearsRange([minYears, maxYears]);
     setLocalSortBy(sortBy);
-  }, [searchParams]);
+  }, [searchParams, searchQuery, selectedCauses, minYears, maxYears, sortBy]);
 
   return (
     <div className='bg-white rounded-lg shadow-sm border p-4 mb-6'>
@@ -247,5 +258,13 @@ export default function NGOFilter({ totalNGOs }: NGOFilterProps) {
         </div>
       )}
     </div>
+  );
+}
+
+export default function NGOFilter(props: NGOFilterProps) {
+  return (
+    <Suspense fallback={<NGOFilterLoading />}>
+      <NGOFilterContent {...props} />
+    </Suspense>
   );
 }

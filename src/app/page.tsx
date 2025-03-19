@@ -145,8 +145,8 @@ export default function Home() {
                 </div>
                 <h3 className='text-xl font-semibold mb-3'>Verified Impact</h3>
                 <p className='text-slate-600'>
-                  Learn about each organization's impact, projects, and ways you
-                  can contribute to their mission.
+                  Learn about each organization&apos;s impact, projects, and
+                  ways you can contribute to their mission.
                 </p>
               </CardContent>
             </Card>

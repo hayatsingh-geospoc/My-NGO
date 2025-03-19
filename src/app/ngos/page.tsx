@@ -1,13 +1,28 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import NGOCard from '@/components/NGOCard';
 import NGOFilter from '@/components/NGOFilter';
 import { ngos as allNGOs } from '@/data/ngos';
 import { NGO } from '@/types';
 
-export default function NGOsPage() {
+// Loading component for suspense fallback
+function NGOsLoading() {
+  return (
+    <div className='py-10 bg-slate-50 min-h-screen'>
+      <div className='container mx-auto px-4'>
+        <h1 className='text-3xl font-bold mb-6'>Animal NGOs Directory</h1>
+        <div className='bg-white rounded-lg shadow-sm p-6 mb-6'>
+          <p>Loading NGOs...</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Main component wrapped in Suspense
+function NGOsContent() {
   const searchParams = useSearchParams();
   const [filteredNGOs, setFilteredNGOs] = useState<NGO[]>([]);
 
@@ -101,12 +116,21 @@ export default function NGOsPage() {
           <div className='bg-white rounded-lg shadow-sm p-8 text-center'>
             <h3 className='text-xl font-semibold mb-3'>No NGOs Found</h3>
             <p className='text-slate-600 mb-4'>
-              We couldn't find any NGOs matching your search criteria. Try
+              We couldn&apos;t find any NGOs matching your search criteria. Try
               adjusting your filters or search terms.
             </p>
           </div>
         )}
       </div>
     </div>
+  );
+}
+
+// Export the page component with Suspense
+export default function NGOsPage() {
+  return (
+    <Suspense fallback={<NGOsLoading />}>
+      <NGOsContent />
+    </Suspense>
   );
 }

@@ -72,7 +72,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className='font-semibold text-lg mb-2'>Email</h3>
                 <p className='text-slate-500 mb-3'>
-                  We'll respond within 24 hours
+                  We&apos;ll respond within 24 hours
                 </p>
                 <a
                   href='mailto:info@animalngo.org'

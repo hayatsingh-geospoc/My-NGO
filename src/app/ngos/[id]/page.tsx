@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   Map,
@@ -26,9 +25,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { ngos } from '@/data/ngos';
-import { NGO } from '@/types';
 
-export default function NGODetailsPage({ params }: { params: { id: string } }) {
+interface NGODetailsPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function NGODetailsPage({ params }: NGODetailsPageProps) {
   const ngo = ngos.find((n) => n.id === params.id);
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);

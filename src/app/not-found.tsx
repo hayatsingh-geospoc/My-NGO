@@ -23,8 +23,8 @@ export default function NotFound() {
           404 - Lost in the Wild
         </h1>
         <p className='text-lg text-slate-600 mb-8'>
-          Oops! It seems you've wandered off the trail. The page you're looking
-          for seems to have gone extinct.
+          Oops! It seems you&apos;ve wandered off the trail. The page
+          you&apos;re looking for seems to have gone extinct.
         </p>
         <Button asChild className='bg-green-600 hover:bg-green-700'>
           <Link href='/'>
