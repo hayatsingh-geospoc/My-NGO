@@ -10,16 +10,16 @@ export const ngos: NGO[] = [
     mission:
       'Our mission is to ensure every animal finds a loving home and receives the care they deserve.',
     location: {
-      address: '123 Animal St, Caring District',
-      city: 'San Francisco',
-      country: 'USA',
+      address: '123 Animal Welfare Road, Andheri East',
+      city: 'Mumbai',
+      country: 'India',
       coordinates: {
-        lat: 37.7749,
-        lng: -122.4194,
+        lat: 19.076,
+        lng: 72.8777,
       },
     },
     contactInfo: {
-      phone: '+1 (555) 123-4567',
+      phone: '+91 9876543210',
       email: 'contact@pawscare.org',
       website: 'https://www.pawscare.org',
       social: {
@@ -161,16 +161,16 @@ export const ngos: NGO[] = [
     mission:
       'To preserve wildlife biodiversity and ensure the survival of endangered species for future generations.',
     location: {
-      address: '456 Conservation Rd',
-      city: 'Boulder',
-      country: 'USA',
+      address: '456 Biodiversity Avenue, Near Cubbon Park',
+      city: 'Bengaluru',
+      country: 'India',
       coordinates: {
-        lat: 40.015,
-        lng: -105.2705,
+        lat: 12.9716,
+        lng: 77.5946,
       },
     },
     contactInfo: {
-      phone: '+1 (555) 987-6543',
+      phone: '+91 8765432109',
       email: 'info@wildlifeguardians.org',
       website: 'https://www.wildlifeguardians.org',
       social: {
@@ -288,16 +288,16 @@ export const ngos: NGO[] = [
     mission:
       'To ensure that every pet, regardless of age or health condition, receives the love and care they deserve.',
     location: {
-      address: '789 Pet Haven Lane',
-      city: 'Portland',
-      country: 'USA',
+      address: '789 Pet Haven Lane, Hauz Khas',
+      city: 'New Delhi',
+      country: 'India',
       coordinates: {
-        lat: 45.5152,
-        lng: -122.6784,
+        lat: 28.6139,
+        lng: 77.209,
       },
     },
     contactInfo: {
-      phone: '+1 (555) 456-7890',
+      phone: '+91 7654321098',
       email: 'hello@furryfriends.org',
       website: 'https://www.furryfriends.org',
       social: {
@@ -391,16 +391,16 @@ export const ngos: NGO[] = [
     mission:
       'To protect and preserve marine life and ocean ecosystems through direct action and public education.',
     location: {
-      address: '101 Ocean Drive',
-      city: 'Miami',
-      country: 'USA',
+      address: '101 Coastal Road, Near Marina Beach',
+      city: 'Chennai',
+      country: 'India',
       coordinates: {
-        lat: 25.7617,
-        lng: -80.1918,
+        lat: 13.0827,
+        lng: 80.2707,
       },
     },
     contactInfo: {
-      phone: '+1 (555) 234-5678',
+      phone: '+91 6543210987',
       email: 'contact@marineprotectors.org',
       website: 'https://www.marineprotectors.org',
       social: {
@@ -494,16 +494,16 @@ export const ngos: NGO[] = [
     mission:
       'To offer a safe haven for exotic animals and educate the public about the needs of these special creatures.',
     location: {
-      address: '567 Sanctuary Road',
-      city: 'Austin',
-      country: 'USA',
+      address: '567 Sanctuary Road, Ranthambore',
+      city: 'Jaipur',
+      country: 'India',
       coordinates: {
-        lat: 30.2672,
-        lng: -97.7431,
+        lat: 26.9124,
+        lng: 75.7873,
       },
     },
     contactInfo: {
-      phone: '+1 (555) 876-5432',
+      phone: '+91 5432109876',
       email: 'info@exoticsanctuary.org',
       website: 'https://www.exoticsanctuary.org',
       social: {
@@ -597,13 +597,11 @@ export const causes = [
   'medical aid',
   'wildlife conservation',
   'habitat protection',
-  'research',
   'education',
   'senior pets',
   'special needs',
   'therapy',
-  'marine conservation',
-  'cleanup',
   'exotic animals',
   'sanctuary',
+  'research',
 ];

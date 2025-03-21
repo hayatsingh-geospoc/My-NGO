@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ClientLayout from '@/components/layout/ClientLayout';
+import { Toaster } from '@/components/ui/toaster';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -40,6 +41,7 @@ export default function RootLayout({
           <main className='flex-grow'>{children}</main>
         </ClientLayout>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,15 +17,26 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import NGOCard from '@/components/NGOCard';
 import { ngos } from '@/data/ngos';
+import LeadForm from '@/components/LeadForm';
 
 export default function Home() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const featuredNGOs = ngos.filter((ngo) => ngo.featured).slice(0, 3);
   const topRatedNGOs = [...ngos]
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 3);
+
+  useEffect(() => {
+    // Auto open the form after 5.5 seconds
+    const timer = setTimeout(() => {
+      setIsFormOpen(true);
+    }, 5500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,30 +48,53 @@ export default function Home() {
   return (
     <div className='min-h-screen'>
       {/* Hero Section */}
-      <section className='relative h-[80vh] min-h-[600px] bg-green-800 flex items-center justify-center'>
-        <div className='absolute inset-0 overflow-hidden'>
+      <section className='relative bg-green-800 text-white py-16 md:py-24'>
+        <div className='absolute inset-0 z-0 overflow-hidden'>
           <Image
-            src='https://images.unsplash.com/photo-1548681528-6a5c45b66b42?q=80&w=2000&auto=format&fit=crop'
-            alt='Animal NGO Hero Background'
+            src='https://images.unsplash.com/photo-1551730458-be400bef0161?q=80&w=2070&auto=format&fit=crop'
+            alt='Wildlife backdrop'
             fill
             priority
             style={{ objectFit: 'cover' }}
             className='opacity-30'
           />
         </div>
-        <div className='container mx-auto px-4 relative z-10 text-center'>
-          <h1 className='text-4xl md:text-6xl font-bold text-white mb-6'>
-            Connecting You with Animal Care NGOs
-          </h1>
-          <p className='text-xl md:text-2xl text-green-100 mb-10 max-w-3xl mx-auto'>
-            Discover organizations dedicated to animal welfare, conservation,
-            and protection around the world.
-          </p>
+        <div className='container mx-auto px-4 relative z-10'>
+          <div className='max-w-3xl mx-auto text-center'>
+            <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-6'>
+              Connect with Animal Welfare NGOs
+            </h1>
+            <p className='text-xl text-green-100 mb-8'>
+              Discover and support organizations dedicated to animal welfare and
+              conservation across India.
+            </p>
+            <div className='flex flex-col sm:flex-row gap-8 justify-center'>
+              <Link href='/ngos' className='flex-1 sm:flex-initial'>
+                <Button
+                  className='w-full sm:w-auto bg-white text-green-800 hover:bg-green-100'
+                  size='lg'
+                >
+                  Find NGOs
+                  <ArrowRight className='ml-2 h-4 w-4' />
+                </Button>
+              </Link>
+              <div className='flex-1 sm:flex-initial'>
+                <LeadForm
+                  buttonText='Register Your NGO'
+                  buttonVariant='outline'
+                  buttonSize='lg'
+                  className='w-full sm:w-auto border-white text-white hover:bg-white hover:text-green-800'
+                  isOpen={isFormOpen}
+                  setIsOpen={setIsFormOpen}
+                />
+              </div>
+            </div>
+          </div>
 
           {/* Search Bar */}
           <form
             onSubmit={handleSearch}
-            className='max-w-md mx-auto flex bg-white rounded-full overflow-hidden shadow-lg'
+            className='max-w-md mx-auto mt-12 flex bg-white rounded-full overflow-hidden shadow-lg'
           >
             <div className='relative flex-grow'>
               <Search className='absolute left-4 top-1/2 transform -translate-y-1/2 text-green-600 h-5 w-5' />
@@ -80,7 +114,7 @@ export default function Home() {
             </Button>
           </form>
 
-          <div className='mt-8 flex justify-center space-x-4'>
+          <div className='mt-10 flex justify-center space-x-8'>
             <Button
               variant='outline'
               className='border-white text-white hover:bg-white hover:text-green-800'
@@ -218,9 +252,9 @@ export default function Home() {
           </h2>
           <p className='text-xl text-green-100 mb-8 max-w-2xl mx-auto'>
             Join the community of animal lovers and supporters making a positive
-            impact on animal welfare worldwide.
+            impact on animal welfare throughout India.
           </p>
-          <div className='flex flex-col sm:flex-row justify-center gap-4'>
+          <div className='flex flex-col sm:flex-row justify-center gap-8'>
             <Button
               className='bg-white text-green-800 hover:bg-green-100'
               size='lg'
@@ -231,14 +265,14 @@ export default function Home() {
                 <ArrowRight className='ml-2 h-4 w-4' />
               </Link>
             </Button>
-            <Button
-              variant='outline'
+            <LeadForm
+              buttonText='Register Your NGO'
+              buttonVariant='outline'
+              buttonSize='lg'
               className='border-white text-white hover:bg-white hover:text-green-800'
-              size='lg'
-              asChild
-            >
-              <Link href='/contact'>Contact Us</Link>
-            </Button>
+              isOpen={false}
+              setIsOpen={setIsFormOpen}
+            />
           </div>
         </div>
       </section>
